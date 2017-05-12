@@ -13,7 +13,7 @@ class FilmListViewController: UIViewController {
     // MARK: Properties
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.description())
+        tableView.register(FilmCell.self, forCellReuseIdentifier: FilmCell.description())
         tableView.dataSource = self
         return tableView
     }()
@@ -54,8 +54,22 @@ extension FilmListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.description(), for: indexPath)
-        cell.textLabel?.text = films[indexPath.row].title
+        let cell = tableView.dequeueReusableCell(withIdentifier: FilmCell.description(), for: indexPath)
+        let film = films[indexPath.row]
+        cell.textLabel?.text = film.title
+        cell.detailTextLabel?.text = film.director
         return cell
+    }
+}
+
+// MARK: - Film Cell
+final class FilmCell: UITableViewCell {
+    // MARK: Designated Initializer
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
