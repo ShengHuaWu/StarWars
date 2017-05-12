@@ -8,10 +8,22 @@
 
 import ReSwift
 
-struct FetchFilmAction: Action {
-    let resource = Film.all
+// MARK: - Action Creator
+func fetchFilms(state: AppState, store: Store<AppState>) -> Action? {
+    let webService = WebService()
+    webService.load(resource: Film.all, completion: { (result) in
+        switch result {
+        case let .success(films):
+            mainStore.dispatch(SetFilmsAction(films: films))
+        case let .failure(error):
+            print(error)
+        }
+    })
+    
+    return nil // Return nil will NOT execute the reducer.
 }
 
-struct AssignFilmAction: Action {
+// MARK: - Action
+struct SetFilmsAction: Action {
     let films: [Film]
 }

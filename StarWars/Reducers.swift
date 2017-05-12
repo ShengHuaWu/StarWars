@@ -9,28 +9,14 @@
 import ReSwift
 
 func appReducer(action: Action, state: AppState?) -> AppState {
-    return AppState(filmsState: filmsRedcuer(action: action, state: state?.filmsState))
+    return AppState(filmsState: filmsReducer(action: action, state: state?.filmsState))
 }
 
-
-//struct FilmReducer
-func filmsRedcuer(action: Action, state: FilmsState?) -> FilmsState {
+func filmsReducer(action: Action, state: FilmsState?) -> FilmsState {
     switch action {
-    case let action as FetchFilmAction:
-        let webService = WebService()
-        webService.load(resource: action.resource, completion: { (result) in
-            switch result {
-            case let .success(films):
-                store.dispatch(AssignFilmAction(films: films))
-            case let .failure(error):
-                print(error)
-            }
-        })
-    case let action as AssignFilmAction:
+    case let action as SetFilmsAction:
         return FilmsState(films: action.films)
     default:
-        break
+        return state ?? FilmsState(films: [])
     }
-    
-    return state ?? FilmsState(films: [])
 }

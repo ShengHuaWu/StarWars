@@ -29,9 +29,9 @@ class FilmListViewController: UIViewController {
         
         view.addSubview(tableView)
         
-        store.subscribe(self)
+        mainStore.subscribe(self)
         
-        store.dispatch(FetchFilmAction())
+        mainStore.dispatch(fetchFilms)
     }
     
     override func viewWillLayoutSubviews() {
@@ -41,7 +41,7 @@ class FilmListViewController: UIViewController {
     }
     
     deinit {
-        store.unsubscribe(self)
+        mainStore.unsubscribe(self)
     }
 }
 
@@ -60,6 +60,14 @@ extension FilmListViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - Store Subscriber
+extension FilmListViewController: StoreSubscriber {
+    func newState(state: AppState) {
+        films = state.filmsState.films
+        tableView.reloadData()
+    }
+}
+
 // MARK: - Film Cell
 final class FilmCell: UITableViewCell {
     // MARK: Designated Initializer
@@ -69,13 +77,5 @@ final class FilmCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-
-// MARK: - Store Subscriber
-extension FilmListViewController: StoreSubscriber {
-    func newState(state: AppState) {
-        films = state.filmsState.films
-        tableView.reloadData()
     }
 }
