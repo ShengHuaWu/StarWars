@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import ReSwift
 
 // MARK: - Film List View Controller
 class FilmListViewController: UIViewController {
     // MARK: Properties
-    private lazy var tableView: UITableView = {
+    fileprivate lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.register(FilmCell.self, forCellReuseIdentifier: FilmCell.description())
         tableView.dataSource = self
@@ -26,24 +27,21 @@ class FilmListViewController: UIViewController {
         
         view.backgroundColor = .white
         
-        let webService = WebService()
-        webService.load(resource: Film.all) { (result) in
-            switch result {
-            case let .success(films):
-                self.films = films
-                self.tableView.reloadData()
-            case let .failure(error):
-                print(error)
-            }
-        }
-        
         view.addSubview(tableView)
+        
+        store.subscribe(self)
+        
+        store.dispatch(FetchFilmAction())
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
         tableView.frame = view.bounds
+    }
+    
+    deinit {
+        store.unsubscribe(self)
     }
 }
 
@@ -71,5 +69,13 @@ final class FilmCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// MARK: - Store Subscriber
+extension FilmListViewController: StoreSubscriber {
+    func newState(state: AppState) {
+        films = state.filmsState.films
+        tableView.reloadData()
     }
 }

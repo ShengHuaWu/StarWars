@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B1EC7D61EC586D700969A7A /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1EC7D51EC586D700969A7A /* States.swift */; };
+		9B1EC7D81EC587A100969A7A /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1EC7D71EC587A100969A7A /* Actions.swift */; };
+		9B1EC7DA1EC5880400969A7A /* Reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1EC7D91EC5880400969A7A /* Reducers.swift */; };
 		9BA3B2651EC54901005083AF /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA3B2641EC54901005083AF /* WebService.swift */; };
 		9BA3B2671EC54C12005083AF /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA3B2661EC54C12005083AF /* Film.swift */; };
 		9BA3B2691EC552CD005083AF /* FilmListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA3B2681EC552CD005083AF /* FilmListViewController.swift */; };
@@ -27,6 +30,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9B1EC7D51EC586D700969A7A /* States.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
+		9B1EC7D71EC587A100969A7A /* Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		9B1EC7D91EC5880400969A7A /* Reducers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reducers.swift; sourceTree = "<group>"; };
 		9BA3B2641EC54901005083AF /* WebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		9BA3B2661EC54C12005083AF /* Film.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
 		9BA3B2681EC552CD005083AF /* FilmListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilmListViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +94,9 @@
 				9BCADDBA1EC44C7F005ACFD6 /* Assets.xcassets */,
 				9BCADDBC1EC44C7F005ACFD6 /* LaunchScreen.storyboard */,
 				9BCADDBF1EC44C7F005ACFD6 /* Info.plist */,
+				9B1EC7D51EC586D700969A7A /* States.swift */,
+				9B1EC7D71EC587A100969A7A /* Actions.swift */,
+				9B1EC7D91EC5880400969A7A /* Reducers.swift */,
 			);
 			path = StarWars;
 			sourceTree = "<group>";
@@ -232,7 +241,10 @@
 				9BA3B2671EC54C12005083AF /* Film.swift in Sources */,
 				9BA3B2691EC552CD005083AF /* FilmListViewController.swift in Sources */,
 				9BCADDB41EC44C7F005ACFD6 /* AppDelegate.swift in Sources */,
+				9B1EC7D81EC587A100969A7A /* Actions.swift in Sources */,
+				9B1EC7D61EC586D700969A7A /* States.swift in Sources */,
 				9BA3B2651EC54901005083AF /* WebService.swift in Sources */,
+				9B1EC7DA1EC5880400969A7A /* Reducers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
