@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9BA3B2651EC54901005083AF /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA3B2641EC54901005083AF /* WebService.swift */; };
+		9BA3B2671EC54C12005083AF /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA3B2661EC54C12005083AF /* Film.swift */; };
 		9BCADDB41EC44C7F005ACFD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCADDB31EC44C7F005ACFD6 /* AppDelegate.swift */; };
 		9BCADDB61EC44C7F005ACFD6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCADDB51EC44C7F005ACFD6 /* ViewController.swift */; };
 		9BCADDB91EC44C7F005ACFD6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BCADDB71EC44C7F005ACFD6 /* Main.storyboard */; };
@@ -26,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9BA3B2641EC54901005083AF /* WebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		9BA3B2661EC54C12005083AF /* Film.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
 		9BCADDB01EC44C7F005ACFD6 /* StarWars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarWars.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BCADDB31EC44C7F005ACFD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9BCADDB51EC44C7F005ACFD6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +85,8 @@
 			children = (
 				9BCADDB31EC44C7F005ACFD6 /* AppDelegate.swift */,
 				9BCADDB51EC44C7F005ACFD6 /* ViewController.swift */,
+				9BA3B2641EC54901005083AF /* WebService.swift */,
+				9BA3B2661EC54C12005083AF /* Film.swift */,
 				9BCADDB71EC44C7F005ACFD6 /* Main.storyboard */,
 				9BCADDBA1EC44C7F005ACFD6 /* Assets.xcassets */,
 				9BCADDBC1EC44C7F005ACFD6 /* LaunchScreen.storyboard */,
@@ -228,7 +234,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BCADDB61EC44C7F005ACFD6 /* ViewController.swift in Sources */,
+				9BA3B2671EC54C12005083AF /* Film.swift in Sources */,
 				9BCADDB41EC44C7F005ACFD6 /* AppDelegate.swift in Sources */,
+				9BA3B2651EC54901005083AF /* WebService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,13 +13,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = URL(string: "http://swapi.co/api/films")!
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let data = data {
-                let json = try! JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                print(json)
+        let webService = WebService()
+        webService.load(resource: Film.all) { (result) in
+            switch result {
+            case let .success(films):
+                print(films)
+            case let .failure(error):
+                print(error)
             }
-        }.resume()
+        }
     }
 }
 
