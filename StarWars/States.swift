@@ -12,11 +12,7 @@ struct AppState: StateType {
     let filmsState: FilmsState
 }
 
-enum FilmsMode {
+enum FilmsState {
     case loading
     case finished([Film])
-}
-
-struct FilmsState: StateType {
-    let mode: FilmsMode
 }

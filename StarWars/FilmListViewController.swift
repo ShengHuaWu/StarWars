@@ -31,8 +31,12 @@ class FilmListViewController: UIViewController {
         
         view.addSubview(tableView)
         view.addSubview(loadingView)
-        
-        mainStore.subscribe(self)
+                
+        mainStore.subscribe(self) { (subscription) in
+            subscription.select { (state) in
+                state.filmsState
+            }
+        }
         
         mainStore.dispatch(fetchFilms)
     }
@@ -66,8 +70,8 @@ extension FilmListViewController: UITableViewDataSource {
 
 // MARK: - Store Subscriber
 extension FilmListViewController: StoreSubscriber {
-    func newState(state: AppState) {
-        switch state.filmsState.mode {
+    func newState(state: FilmsState) {
+        switch state {
         case .loading:
             loadingView.isHidden = false
             loadingView.startAnimating()
