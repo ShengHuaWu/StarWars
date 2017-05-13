@@ -14,16 +14,19 @@ func fetchFilms(state: AppState, store: Store<AppState>) -> Action? {
     webService.load(resource: Film.all, completion: { (result) in
         switch result {
         case let .success(films):
-            mainStore.dispatch(SetFilmsAction(films: films))
+            store.dispatch(SetFilmsAction(films: films))
         case let .failure(error):
             print(error)
         }
     })
     
-    return nil // Return nil will NOT execute the reducer.
+    // Return nil will NOT execute the reducer.
+    return LoadingFilmsAction()
 }
 
 // MARK: - Action
+struct LoadingFilmsAction: Action {}
+
 struct SetFilmsAction: Action {
     let films: [Film]
 }

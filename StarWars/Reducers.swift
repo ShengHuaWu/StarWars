@@ -15,8 +15,10 @@ func appReducer(action: Action, state: AppState?) -> AppState {
 func filmsReducer(action: Action, state: FilmsState?) -> FilmsState {
     switch action {
     case let action as SetFilmsAction:
-        return FilmsState(films: action.films)
+        return FilmsState(mode: .finished(action.films))
+    case _ as LoadingFilmsAction:
+        return FilmsState(mode: .loading)
     default:
-        return state ?? FilmsState(films: [])
+        return state ?? FilmsState(mode: .finished([]))
     }
 }

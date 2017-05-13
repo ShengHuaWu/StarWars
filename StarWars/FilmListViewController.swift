@@ -19,6 +19,8 @@ class FilmListViewController: UIViewController {
         return tableView
     }()
     
+    fileprivate lazy var loadingView = LoadingView(frame: .zero)
+    
     fileprivate var films = [Film]()
     
     // MARK: View Life Cycle
@@ -28,6 +30,7 @@ class FilmListViewController: UIViewController {
         view.backgroundColor = .white
         
         view.addSubview(tableView)
+        view.addSubview(loadingView)
         
         mainStore.subscribe(self)
         
@@ -38,6 +41,7 @@ class FilmListViewController: UIViewController {
         super.viewWillLayoutSubviews()
         
         tableView.frame = view.bounds
+        loadingView.frame = view.bounds
     }
     
     deinit {
@@ -63,8 +67,17 @@ extension FilmListViewController: UITableViewDataSource {
 // MARK: - Store Subscriber
 extension FilmListViewController: StoreSubscriber {
     func newState(state: AppState) {
-        films = state.filmsState.films
-        tableView.reloadData()
+        switch state.filmsState.mode {
+        case .loading:
+            loadingView.isHidden = false
+            loadingView.startAnimating()
+            tableView.reloadData()
+        case let .finished(films):
+            self.films = films
+            loadingView.isHidden = true
+            tableView.isHidden = false
+            tableView.reloadData()
+        }
     }
 }
 
@@ -77,5 +90,37 @@ final class FilmCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// MARK: - Loading View
+final class LoadingView: UIView {
+    // MARK: Properties
+    private lazy var spinner = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    
+    // MARK: Designated Initializer
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        backgroundColor = .lightGray
+        
+        addSubview(spinner)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: Layout
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        spinner.sizeToFit()
+        spinner.center = CGPoint(x: bounds.midX, y: bounds.midY)
+    }
+    
+    // MARK: Animate
+    func startAnimating() {
+        spinner.startAnimating()
     }
 }
