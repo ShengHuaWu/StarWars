@@ -32,9 +32,8 @@ class ActionProviderTests: XCTestCase {
     func testFetchFilmActionProvider() {
         let state = AppState(filmsState: .loading)
         
-        let action = fetchFilms(with: webService)(state, mainStore)
+        webService.expectedAction = fetchFilms(with: webService)(state, mainStore)
         
-        XCTAssert(action is LoadingFilmsAction)
         webService.verify()
     }
 }
@@ -42,12 +41,18 @@ class ActionProviderTests: XCTestCase {
 // MARK: - Mock Web Service
 final class MockWebService: WebServiceProtocol {
     private var loadCallCount = 0
+    private var loadResource: Resource<[Film]>!
+    var expectedAction: Action!
     
     func load<T>(resource: Resource<T>, completion: @escaping (Result<T>) -> ()) {
-        loadCallCount += 1        
+        loadCallCount += 1
+        loadResource = resource as Any as! Resource<[Film]>
     }
     
     func verify(file: StaticString = #file, line: UInt = #line) {
         XCTAssertEqual(loadCallCount, 1, "call count", file: file, line: line)
+        XCTAssertEqual(loadResource.url, Film.all.url, "resource url", file: file, line: line)
+        XCTAssert(expectedAction is LoadingFilmsAction)
     }
 }
+
