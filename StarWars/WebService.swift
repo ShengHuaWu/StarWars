@@ -8,11 +8,13 @@
 
 import Foundation
 
+// MARK: - Result
 enum Result<T> {
     case success(T)
     case failure(Error)
 }
 
+// MARK: - Resource
 struct Resource<T> {
     let url: URL
     let parser: (Data) throws -> T
@@ -28,7 +30,8 @@ extension Resource {
     }
 }
 
-final class WebService {
+// MARK: - Web Service
+final class WebService: WebServiceProtocol {
     func load<T>(resource: Resource<T>, completion: @escaping (Result<T>) -> ()) {
         URLSession.shared.dataTask(with: resource.url) { (data, response, error) in
             if let error = error {
@@ -51,4 +54,8 @@ final class WebService {
             }
         }.resume()
     }
+}
+
+protocol WebServiceProtocol {
+    func load<T>(resource: Resource<T>, completion: @escaping (Result<T>) -> ())
 }

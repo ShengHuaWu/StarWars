@@ -112,8 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				9BCADDCA1EC44C80005ACFD6 /* Info.plist */,
-				9B02CBB51EC7EEBD00115F57 /* ActionProviderTests.swift */,
 				9B02CBB41EC7EEBD00115F57 /* StarWarsTests-Bridging-Header.h */,
+				9B02CBB51EC7EEBD00115F57 /* ActionProviderTests.swift */,
 				9B02CBD41EC7FA7B00115F57 /* ReducerTests.swift */,
 			);
 			path = StarWarsTests;

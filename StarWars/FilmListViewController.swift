@@ -38,7 +38,7 @@ class FilmListViewController: UIViewController {
             }
         }
         
-        mainStore.dispatch(fetchFilms)
+        mainStore.dispatch(fetchFilms())
     }
     
     override func viewWillLayoutSubviews() {

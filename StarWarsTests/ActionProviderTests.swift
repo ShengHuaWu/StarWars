@@ -13,63 +13,41 @@ import ReSwift
 // MARK: - Action Provider Tests
 class ActionProviderTests: XCTestCase {
     // MARK: Properties
-    private var store: MockStore!
+    private var webService: MockWebService!
     
     // MARK: Override Methods
     override func setUp() {
         super.setUp()
         
-        store = MockStore(reducer: appReducer, state: nil)
+        webService = MockWebService()
     }
     
     override func tearDown() {
-        store = nil
+        webService = nil
         
         super.tearDown()
     }
     
     // MARK: Enabled Tests
     func testFetchFilmActionProvider() {
-        let fetchFilmExpectation = expectation(description: "Fetch Film Action Provider")
-        
         let state = AppState(filmsState: .loading)
-        store.expectation = fetchFilmExpectation
-        store.verify = { [weak self] in
-            guard let strongSelf = self else { return }
-            
-            strongSelf.store.verify()
-        }
         
-        let action = fetchFilms(state: state, store: store)
+        let action = fetchFilms(with: webService)(state, mainStore)
+        
         XCTAssert(action is LoadingFilmsAction)
-        
-        waitForExpectations(timeout: 5.0, handler: nil)
+        webService.verify()
     }
 }
 
-// MARK: - Mock Store
-final class MockStore: Store<AppState> {
-    var expectation: XCTestExpectation?
-    var verify: (() -> ())?
-    private var dispatchCallCount = 0
-    private var expectedAction: Action?
+// MARK: - Mock Web Service
+final class MockWebService: WebServiceProtocol {
+    private var loadCallCount = 0
     
-    override func dispatch(_ action: Action) {
-        switch action {
-        case _ as ReSwiftInit:
-            break
-        default:
-            dispatchCallCount += 1
-            expectedAction = action
-            
-            verify?()
-            
-            expectation?.fulfill()
-        }
+    func load<T>(resource: Resource<T>, completion: @escaping (Result<T>) -> ()) {
+        loadCallCount += 1        
     }
     
     func verify(file: StaticString = #file, line: UInt = #line) {
-        XCTAssertEqual(dispatchCallCount, 1, "count", file: file, line: line)
-        XCTAssert(expectedAction is SetFilmsAction, "action", file: file, line: line)
+        XCTAssertEqual(loadCallCount, 1, "call count", file: file, line: line)
     }
 }

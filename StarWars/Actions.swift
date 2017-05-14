@@ -9,19 +9,20 @@
 import ReSwift
 
 // MARK: - Action Creator
-func fetchFilms(state: AppState, store: Store<AppState>) -> Action? {
-    let webService = WebService()
-    webService.load(resource: Film.all, completion: { (result) in
-        switch result {
-        case let .success(films):
-            store.dispatch(SetFilmsAction(films: films))
-        case let .failure(error):
-            print(error)
-        }
-    })
-    
-    // Return nil will NOT execute the reducer.
-    return LoadingFilmsAction()
+func fetchFilms(with webService: WebServiceProtocol = WebService()) -> (AppState, Store<AppState>) -> Action? {
+    return { state, store in
+        webService.load(resource: Film.all, completion: { (result) in
+            switch result {
+            case let .success(films):
+                store.dispatch(SetFilmsAction(films: films))
+            case let .failure(error):
+                print(error)
+            }
+        })
+        
+        // Return nil will NOT execute the reducer.
+        return LoadingFilmsAction()
+    }
 }
 
 // MARK: - Action
