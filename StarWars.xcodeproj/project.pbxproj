@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B02CBB61EC7EEBD00115F57 /* ActionProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B02CBB51EC7EEBD00115F57 /* ActionProviderTests.swift */; };
+		9B02CBB71EC7EFB400115F57 /* ReSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEDC1611EC44FC8009B775C /* ReSwift.framework */; };
+		9B02CBD51EC7FA7B00115F57 /* ReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B02CBD41EC7FA7B00115F57 /* ReducerTests.swift */; };
 		9B1EC7D61EC586D700969A7A /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1EC7D51EC586D700969A7A /* States.swift */; };
 		9B1EC7D81EC587A100969A7A /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1EC7D71EC587A100969A7A /* Actions.swift */; };
 		9B1EC7DA1EC5880400969A7A /* Reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1EC7D91EC5880400969A7A /* Reducers.swift */; };
@@ -30,6 +33,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9B02CBB41EC7EEBD00115F57 /* StarWarsTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StarWarsTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		9B02CBB51EC7EEBD00115F57 /* ActionProviderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionProviderTests.swift; sourceTree = "<group>"; };
+		9B02CBD41EC7FA7B00115F57 /* ReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReducerTests.swift; sourceTree = "<group>"; };
 		9B1EC7D51EC586D700969A7A /* States.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
 		9B1EC7D71EC587A100969A7A /* Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		9B1EC7D91EC5880400969A7A /* Reducers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reducers.swift; sourceTree = "<group>"; };
@@ -59,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B02CBB71EC7EFB400115F57 /* ReSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +112,9 @@
 			isa = PBXGroup;
 			children = (
 				9BCADDCA1EC44C80005ACFD6 /* Info.plist */,
+				9B02CBB51EC7EEBD00115F57 /* ActionProviderTests.swift */,
+				9B02CBB41EC7EEBD00115F57 /* StarWarsTests-Bridging-Header.h */,
+				9B02CBD41EC7FA7B00115F57 /* ReducerTests.swift */,
 			);
 			path = StarWarsTests;
 			sourceTree = "<group>";
@@ -172,6 +182,7 @@
 					};
 					9BCADDC31EC44C80005ACFD6 = {
 						CreatedOnToolsVersion = 8.3.2;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 9BCADDAF1EC44C7F005ACFD6;
 					};
@@ -252,6 +263,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B02CBD51EC7FA7B00115F57 /* ReducerTests.swift in Sources */,
+				9B02CBB61EC7EEBD00115F57 /* ActionProviderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,10 +420,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS";
 				INFOPLIST_FILE = StarWarsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shenghuawu.StarWarsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "StarWarsTests/StarWarsTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StarWars.app/StarWars";
 			};
@@ -421,10 +438,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS";
 				INFOPLIST_FILE = StarWarsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shenghuawu.StarWarsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "StarWarsTests/StarWarsTests-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StarWars.app/StarWars";
 			};
