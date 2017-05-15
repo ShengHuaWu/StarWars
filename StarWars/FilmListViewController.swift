@@ -27,6 +27,8 @@ class FilmListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Films"
+        
         view.backgroundColor = .white
         
         view.addSubview(tableView)
